@@ -1,12 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Events</title>
 </head>
 <body>
-    <h3>Hello, World!</h3>
+    <h1>Events List</h1>
+    <h3><a href="/register">Register Event</a></h3>
+    
+    <div th:each="event : ${events}">
+        <div class="row">
+            <p><span th:text="${event.name}"></span></p>
+            <p><span th:text="${event.place}"></span></p>
+            <p><span th:text="${event.date}"></span></p>
+            <p><span th:text="${event.time}"></span></p>
+        </div>
+    </div>
 </body>
 </html>
