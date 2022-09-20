@@ -4,17 +4,20 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
     <title>Register Event</title>
 </head>
 <body>
     <h1>Register Event</h1>
-    <form method="post" action="">
-        Name: <input type="text" value="" name="name">
-        Local: <input type="text" value="" name="place">
-        Date: <input type="date" value="" name="date">
-        Time: <input type="text" value="" name="time">
+    <form method="post" action="" class="form-group">
+        <input type="text" value="" name="name" class="form-control" id="formGroupExampleInput" placeholder="Name">
+        <input type="text" value="" name="place" class="form-control" id="formGroupExampleInput" placeholder="Place">
+        <input type="date" value="" name="date" class="form-control" id="formGroupExampleInput" placeholder="Date">
+        <input type="text" value="" name="time" class="form-control" id="formGroupExampleInput" placeholder="Time">
 
-        <button type="submit">Save</button>
+        <button type="submit" class="btn btn-primary">Save</button>
     </form>
+    <h3><a href="/events" class="btn btn-primary">Events List</a></h3>
 </body>
 </html>
