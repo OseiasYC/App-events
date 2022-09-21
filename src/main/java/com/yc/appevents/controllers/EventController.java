@@ -27,14 +27,15 @@ public class EventController {
     @Autowired
     private GuestRepository guestRepository;
 
-    @RequestMapping(value="/register", method=RequestMethod.GET)
-    public String form(){
+    @RequestMapping(value = "/register", method = RequestMethod.GET)
+    public String form() {
         return "event/formEvent";
     }
 
-    @RequestMapping(value="/register", method=RequestMethod.POST)
-    public String form(@Valid Event event, BindingResult result, RedirectAttributes attributes){
-        if (event.getName().equals("") || event.getTime().equals("") || event.getDate().equals("") || event.getPlace().equals("")) {
+    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    public String form(@Valid Event event, BindingResult result, RedirectAttributes attributes) {
+        if (event.getName().equals("") || event.getTime().equals("") || event.getDate().equals("")
+                || event.getPlace().equals("")) {
             attributes.addFlashAttribute("message", "Check the inputs!");
             return "redirect:/register";
         }
@@ -44,15 +45,15 @@ public class EventController {
     }
 
     @RequestMapping("/events")
-    public ModelAndView eventsList(){
+    public ModelAndView eventsList() {
         ModelAndView modelAndView = new ModelAndView("index");
         Iterable<Event> events = eventRepository.findAll();
         modelAndView.addObject("events", events);
         return modelAndView;
     }
 
-    @RequestMapping(value="/{code}", method = RequestMethod.GET)
-    public ModelAndView eventDetails(@PathVariable("code") long code){
+    @RequestMapping(value = "/{code}", method = RequestMethod.GET)
+    public ModelAndView eventDetails(@PathVariable("code") long code) {
         Event event = eventRepository.findByCode(code);
         ModelAndView modelAndView = new ModelAndView("event/eventDetails");
         modelAndView.addObject("event", event);
@@ -63,8 +64,16 @@ public class EventController {
         return modelAndView;
     }
 
-    @RequestMapping(value="/{code}", method = RequestMethod.POST)
-    public String eventDetailsPOST(@PathVariable("code") long code, @Valid Guest guest, BindingResult result, RedirectAttributes attributes){
+    @RequestMapping("/delete")
+    public String eventDelete(long code) {
+        Event event = eventRepository.findByCode(code);
+        eventRepository.delete(event);
+        return "redirect:/events";
+    }
+
+    @RequestMapping(value = "/{code}", method = RequestMethod.POST)
+    public String eventDetailsPOST(@PathVariable("code") long code, @Valid Guest guest, BindingResult result,
+            RedirectAttributes attributes) {
         if (guest.getGuestName().equals("") || guest.getGr().equals("")) {
             attributes.addFlashAttribute("message", "Check the inputs!");
             return "redirect:/{code}";
