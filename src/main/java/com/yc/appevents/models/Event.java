@@ -1,13 +1,16 @@
 package com.yc.appevents.models;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.annotation.Generated;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name="EVENTS")
@@ -19,10 +22,20 @@ public class Event implements Serializable{
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long code;
 
+    @NotEmpty
     private String name;
+
+    @NotEmpty
     private String place;
+
+    @NotEmpty
     private String date;
+
+    @NotEmpty
     private String time;
+
+    @OneToMany
+    private List<Guest> guest;
     
     public long getCode() {
         return code;

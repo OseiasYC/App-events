@@ -1,0 +1,8 @@
+<!DOCTYPE html>
+<html lang="pt"xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://thymeleaf.org">
+    <body>	
+        <div role="alert" th:if="${not #strings.isEmpty(message)}">
+	        <span th:text="${message}"></span>
+        </div>
+    </body>						
+</html>
