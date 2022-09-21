@@ -71,6 +71,17 @@ public class EventController {
         return "redirect:/events";
     }
 
+    @RequestMapping("/guestDelete")
+    public String guestDelete(String gr){
+        Guest guest = guestRepository.findByGr(gr);
+        guestRepository.delete(guest);
+
+        Event event = guest.getEvent();
+        long longCode = event.getCode();
+        String code = "" + longCode;
+        return("redirect:/" + code);
+    }
+
     @RequestMapping(value = "/{code}", method = RequestMethod.POST)
     public String eventDetailsPOST(@PathVariable("code") long code, @Valid Guest guest, BindingResult result,
             RedirectAttributes attributes) {

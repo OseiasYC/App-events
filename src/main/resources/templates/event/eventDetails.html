@@ -21,13 +21,15 @@
                 <p class="pr-2"><strong>Place: </strong><span th:text="${event.place}"></span></p>
                 <p class="pr-2"><strong>Date: </strong><span th:text="${event.date}"></span></p>
                 <p class="pr-2"><strong>Time: </strong><span th:text="${event.time}"></span></p>
+                <p class="pr-2"><strong>Delete: </strong></p>
             </div>
 
             <th:block th:include="messageValidation"></th:block>
 
         <h3>Names and Register:</h3>
             <div th:each="guest : ${guests}" class="d-flex">
-                <p><span th:text="${guest.guestName}"></span>-<p><span th:text="${guest.gr}"></span></p></p>        
+                <p><span th:text="${guest.guestName}"></span>-<p><span th:text="${guest.gr}"></span></p></p>
+                <p><a th:href="${(#mvc.url('EC#guestDelete').arg(0, guest.gr)).build()}"><i class="bi bi-trash-fill"></i></a></p>     
             </div>
     </div>
 </body>
